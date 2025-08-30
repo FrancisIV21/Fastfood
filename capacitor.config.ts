@@ -1,10 +1,9 @@
-import { CapacitorConfig } from '@capacitor/cli';
+import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.fastfood.app',
-  appName: 'FastFoodApp',
-  webDir: 'dist',
-  bundledWebRuntime: false
+  appId: 'com.Fastfood.app',
+  appName: 'Fastfood',
+  webDir: 'public'
 };
 
 export default config;

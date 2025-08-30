@@ -9,12 +9,14 @@
     "sync": "npx cap sync"
   },
   "dependencies": {
-    "@capacitor/android": "^6.0.0",
-    "@capacitor/core": "^6.0.0",
-    "@capacitor/ios": "^6.0.0",
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/cli": "^7.4.3",
+    "@capacitor/core": "^7.4.3",
+    "@capacitor/ios": "^7.4.3",
     "@ionic/vue": "^8.2.0",
     "@ionic/vue-router": "^8.2.0",
     "pinia": "^2.2.0",
+    "swiper": "^11.2.10",
     "vue": "^3.5.0",
     "vue-router": "^4.4.0"
   },

@@ -2,10 +2,10 @@
   <ion-footer>
     <ion-toolbar>
       <ion-buttons slot="start">
-        <ion-button router-link="/home">Home</ion-button>
-        <ion-button router-link="/menu">Menu</ion-button>
-        <ion-button router-link="/cart">Cart</ion-button>
-        <ion-button router-link="/profile">Profile</ion-button>
+        <ion-button routerLink="/home">Home</ion-button>
+        <ion-button routerLink="/menu">Menu</ion-button>
+        <ion-button routerLink="/cart">Cart</ion-button>
+        <ion-button routerLink="/profile">Profile</ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-footer>

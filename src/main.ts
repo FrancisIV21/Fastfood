@@ -2,7 +2,6 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
 import { createPinia } from 'pinia';
-
 import { IonicVue } from '@ionic/vue';
 
 // Ionic core CSS
@@ -12,15 +11,13 @@ import '@ionic/vue/css/structure.css';
 import '@ionic/vue/css/typography.css';
 import '@ionic/vue/css/display.css';
 
-// Theme
-import './theme/variables.css';
-import './theme/global.css';
+// (Optional) your theme files if you created them
+// import './theme/variables.css';
+// import './theme/global.css';
 
 const app = createApp(App)
   .use(IonicVue)
-  .use(router)
-  .use(createPinia());
+  .use(createPinia())
+  .use(router);
 
-router.isReady().then(() => {
-  app.mount('#app');
-});
+router.isReady().then(() => app.mount('#app'));
