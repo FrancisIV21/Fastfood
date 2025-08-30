@@ -11,7 +11,7 @@ import '@ionic/vue/css/structure.css';
 import '@ionic/vue/css/typography.css';
 import '@ionic/vue/css/display.css';
 
-// (Optional) your theme files if you created them
+// (Optional) 
 // import './theme/variables.css';
 // import './theme/global.css';
 

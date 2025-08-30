@@ -35,7 +35,8 @@
         <img :src="logoRed" alt="logo" class="logo-img" />
         <div class="greeting-text">
           <p class="greeting">Anneayong, Chau!</p>
-          <h2 class="question">What do you want to eat?</h2>
+          <h2 class="question">What do you want</h2>
+          <h2 class="question">to eat?</h2>
         </div>
       </div>
 
@@ -60,15 +61,16 @@
         
         <!-- Horizontal Slider for Special Offers -->
         <div class="offers-slider">
-          <div class="offer-card" v-for="offer in specialOffers" :key="offer.id">
-            <img :src="offer.image" :alt="offer.title" class="offer-image" />
-            <div class="offer-content">
-              <div class="offer-badge">{{ offer.badge }}</div>
-              <h4 class="offer-title">{{ offer.title }}</h4>
-              <p class="offer-subtitle">{{ offer.subtitle }}</p>
-              <div class="offer-price">{{ offer.price }}</div>
-            </div>
-          </div>
+       <div 
+  class="offer-card" 
+  v-for="offer in specialOffers" 
+  :key="offer.id"
+  :style="{ backgroundImage: `url(${offer.image})` }"
+>
+  <div class="offer-content">
+    <!-- content stays the same -->
+  </div>
+</div>
         </div>
       </div>
 
@@ -89,8 +91,8 @@
           </div>
         </div>
         
-        <!-- Order Now Button -->
-        <ion-button expand="block" class="order-now-btn" @click="orderNow">
+        <!-- Order Now Button - Floating -->
+        <ion-button class="order-now-btn" @click="orderNow">
           Order Now!
         </ion-button>
       </div>
@@ -113,8 +115,11 @@ import logoRed from '../assets/logo-red.png';
 // You'll need to add these images to your assets folder
 import chickenImg from '../assets/chicken-category.jpg';
 import seafoodImg from '../assets/seafood-category.png';
+import dessertImg from '../assets/dessert-category.jpg';
+import drinksImg from '../assets/drinks-category.jpg';
 import offerImg1 from '../assets/offer1.png';
 import offerImg2 from '../assets/offer2.png';
+
 
 const router = useRouter();
 
@@ -148,6 +153,16 @@ const categories = ref([
     id: 2,
     name: 'Seafoods',
     image: seafoodImg
+  },
+  {
+    id: 3,
+    name: 'Drinks',
+    image: drinksImg // Will be replaced with actual drinks image
+  },
+  {
+    id: 4,
+    name: 'Dessert',
+    image: dessertImg // Will be replaced with actual dessert image
   }
 ]);
 
@@ -239,14 +254,15 @@ ion-content {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 24px;
   padding: 0 8px;
+  margin-left: 10px;
 }
 
 .logo-img {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -271,6 +287,7 @@ ion-content {
 }
 
 /* Search Section */
+
 .search-section {
   margin-bottom: 24px;
   padding: 0 4px;
@@ -284,7 +301,11 @@ ion-content {
   --placeholder-font-style: italic;
   --color: #333;
   --icon-color: #e53e3e;
-  height: 50px;
+  height: 30px;
+  border: 1px solid #e0e0e0;
+  border-radius: 22px;
+  width: 380px;
+  left: 20px;
 }
 
 .custom-searchbar::part(icon) {
@@ -295,6 +316,7 @@ ion-content {
 .special-offers-section {
   margin-bottom: 24px;
   padding: 0 4px;
+  margin-left: 5px;
 }
 
 .section-header {
@@ -337,23 +359,19 @@ ion-content {
   overflow: hidden;
   position: relative;
   scroll-snap-align: start;
-  background: linear-gradient(135deg, #e53e3e, #ff6b6b);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   padding: 16px;
   color: white;
 }
 
-.offer-image {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-right: 16px;
-}
-
 .offer-content {
-  flex: 1;
+  position: relative;
+  z-index: 2;
+  width: 100%;
 }
 
 .offer-badge {
@@ -391,6 +409,7 @@ ion-content {
 .category-section {
   margin-bottom: 24px;
   padding: 0 4px;
+  margin-left: 5px;
 }
 
 .category-title {
@@ -401,19 +420,27 @@ ion-content {
 }
 
 .category-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 12px;
-  margin-bottom: 20px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+  margin-bottom: 80px; /* Add space for floating button */
+}
+
+.category-grid::-webkit-scrollbar {
+  display: none;
 }
 
 .category-item {
   position: relative;
-  height: 120px;
+  height: 300px;
+  width: 100%;
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s ease;
+  min-width: 209px;
 }
 
 .category-item:hover {
@@ -441,15 +468,22 @@ ion-content {
   font-weight: bold;
 }
 
-/* Order Now Button */
+
+/* Order Now Button - Floating */
 .order-now-btn {
   --background: #e53e3e;
   --background-activated: #d63031;
   --color: white;
-  --border-radius: 12px;
-  height: 48px;
+  --border-radius: 15px;
+  height: 50px;
+  width: 140px;
   font-weight: bold;
-  margin-top: 8px;
+  position: absolute;
+  bottom: 190px;
+  right: 20px;
+  z-index: 1000 !important;
+  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.3);
+  margin: 0;
 }
 
 /* Ensure content is visible and properly positioned */
