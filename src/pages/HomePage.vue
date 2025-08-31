@@ -55,6 +55,7 @@
           <h3>Special Offers!</h3>
           <ion-button fill="clear" class="view-all-btn" @click="viewAllOffers">
             View All
+            <img :src="pointsBtn" alt="points button" class="viewAll-btn" />
             <ion-icon name="chevron-forward" slot="end"></ion-icon>
           </ion-button>
         </div>
@@ -238,8 +239,8 @@ ion-toolbar {
 }
 
 .points-btn {
-  width: 16px;
-  height: 16px;
+  width: 10px;
+  height: 11px;
 }
 
 /* ----- Content Sections ----- */
@@ -337,6 +338,13 @@ ion-content {
   --color: #e53e3e;
   font-size: 14px;
   font-weight: 500;
+}
+
+.viewAll-btn {
+  width: 8px;
+  height: 8px;
+  margin-left: 8px;
+  
 }
 
 .offers-slider {

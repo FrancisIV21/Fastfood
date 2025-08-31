@@ -1,9 +1,0 @@
-{
-	"appId": "com.fastfood.app",
-	"appName": "Fastfood",
-	"webDir": "dist",
-	"server": {
-		"androidScheme": "https"
-	},
-	"packageClassList": []
-}

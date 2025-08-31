@@ -1,3 +1,33 @@
-body {
-  font-family: 'Inter', sans-serif;
+/* ✅ Remove the default white flash when opening/closing ion-menu */
+ion-menu {
+  --background: transparent !important; /* for main menu background */
+  --ion-background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* ✅ Override Ionic’s internal sliding container */
+ion-menu::part(container),
+ion-menu::part(inner) {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* ✅ Optional: match your app background instead of pure transparent */
+ion-menu::part(container) {
+  background: var(--ion-background-color, #f8f8f8) !important;
+}
+
+/* ✅ Ensure toolbar/header in the menu also doesn’t flash white */
+ion-menu ion-header,
+ion-menu ion-toolbar {
+  --background: transparent !important;
+  --ion-background-color: transparent !important;
+  box-shadow: none !important;
+}
+ion-backdrop {
+  --backdrop-opacity: 0 !important;   /* kills dim/white overlay */
+  --background: transparent !important;
+}
+html, body, ion-app, ion-router-outlet, ion-menu, .ion-page, .menu-content, .menu-inner {
+  background: #ff0000 !important; /* or your red/white scheme */
 }
