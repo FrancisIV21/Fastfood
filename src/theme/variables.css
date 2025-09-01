@@ -28,3 +28,9 @@ ion-backdrop {
   --backdrop-opacity: 0 !important;   /* kills dim/white overlay */
   --background: transparent !important;
 }
+ion-searchbar {
+  --padding-start: 44px;
+  --padding-end: 44px;
+  --padding-top: 0;
+  --padding-bottom: 0;
+}

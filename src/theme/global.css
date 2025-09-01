@@ -31,3 +31,9 @@ ion-backdrop {
 html, body, ion-app, ion-router-outlet, ion-menu, .ion-page, .menu-content, .menu-inner {
   background: #ff0000 !important; /* or your red/white scheme */
 }
+ion-searchbar {
+  --padding-start: 44px;
+  --padding-end: 44px;
+  --padding-top: 0;
+  --padding-bottom: 0;
+}

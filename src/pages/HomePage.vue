@@ -29,74 +29,136 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-content class="ion-padding main-content">
-      <!-- Logo and Greeting -->
-      <div class="greeting-section">
-        <img :src="logoRed" alt="logo" class="logo-img" />
-        <div class="greeting-text">
-          <p class="greeting">Anneayong, Chau!</p>
-          <h2 class="question">What do you want</h2>
-          <h2 class="question">to eat?</h2>
+    <ion-content class="main-content">
+      <!-- Fixed Header Section -->
+      <div class="fixed-header">
+        <!-- Logo and Greeting -->
+        <div class="greeting-section">
+          <img :src="logoRed" alt="logo" class="logo-img" />
+          <div class="greeting-text">
+            <p class="greeting">Anneayong, Chau!</p>
+            <h2 class="question">What do you want</h2>
+            <h2 class="question">to eat?</h2>
+          </div>
+        </div>
+
+        <!-- Search Bar - Updated -->
+        <div class="search-section">
+          <div class="search-container">
+            <ion-searchbar 
+              placeholder="try our new Steak Fries Veggies"
+              show-clear-button="focus"
+              class="custom-searchbar"
+            ></ion-searchbar>
+          </div>
         </div>
       </div>
 
-      <!-- Search Bar -->
-      <div class="search-section">
-        <ion-searchbar 
-          placeholder="try our new Steak Fries Veggies"
-          show-clear-button="focus"
-          class="custom-searchbar"
-        ></ion-searchbar>
-      </div>
-
-      <!-- Special Offers Section -->
-      <div class="special-offers-section">
-        <div class="section-header">
-          <h3>Special Offers!</h3>
-          <ion-button fill="clear" class="view-all-btn" @click="viewAllOffers">
-            View All
-            <img :src="pointsBtn" alt="points button" class="viewAll-btn" />
-            <ion-icon name="chevron-forward" slot="end"></ion-icon>
-          </ion-button>
-        </div>
-        
-        <!-- Horizontal Slider for Special Offers -->
-        <div class="offers-slider">
-       <div 
-  class="offer-card" 
-  v-for="offer in specialOffers" 
-  :key="offer.id"
-  :style="{ backgroundImage: `url(${offer.image})` }"
->
-  <div class="offer-content">
-    <!-- content stays the same -->
-  </div>
-</div>
-        </div>
-      </div>
-
-      <!-- Category Section -->
-      <div class="category-section">
-        <h3 class="category-title">Category</h3>
-        <div class="category-grid">
-          <div 
-            class="category-item" 
-            v-for="category in categories" 
-            :key="category.id"
-            @click="goToCategory(category.id)"
-          >
-            <img :src="category.image" :alt="category.name" class="category-image" />
-            <div class="category-overlay">
-              <span class="category-name">{{ category.name }}</span>
+      <!-- Scrollable Content -->
+      <div class="scrollable-content">
+        <!-- Special Offers Section -->
+        <div class="special-offers-section">
+          <div class="section-header">
+            <h3>Special Offers!</h3>
+            <ion-button fill="clear" class="view-all-btn" @click="viewAllOffers">
+              View All
+              <img :src="pointsBtn" alt="points button" class="viewAll-btn" />
+              <ion-icon name="chevron-forward" slot="end"></ion-icon>
+            </ion-button>
+          </div>
+          
+          <!-- Horizontal Slider for Special Offers -->
+          <div class="offers-slider">
+            <div 
+              class="offer-card" 
+              v-for="offer in specialOffers" 
+              :key="offer.id"
+              :style="{ backgroundImage: `url(${offer.image})` }"
+            >
+              <div class="offer-content">
+                <!-- content stays the same -->
+              </div>
             </div>
           </div>
         </div>
-        
-        <!-- Order Now Button - Floating -->
-        <ion-button class="order-now-btn" @click="orderNow">
-          Order Now!
-        </ion-button>
+
+        <!-- Category Section -->
+        <div class="category-section">
+          <h3 class="category-title">Category</h3>
+          <div class="category-grid">
+            <div 
+              class="category-item" 
+              v-for="category in categories" 
+              :key="category.id"
+              @click="goToCategory(category.id)"
+            >
+              <img :src="category.image" :alt="category.name" class="category-image" />
+              <div class="category-overlay">
+                <span class="category-name">{{ category.name }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- What's New Section -->
+        <div class="whats-new-section">
+          <h3 class="section-title">What's New?</h3>
+          <div class="new-item-card">
+            <img :src="newImg" alt="What's New" class="new-main-image" />
+          </div>
+        </div>
+
+        <!-- Most Popular Section -->
+        <div class="most-popular-section">
+          <h3 class="section-title">Most Popular</h3>
+          <div class="popular-grid">
+            <div class="popular-card" @click="navigateToOrder('american-breakfast')">
+              <img :src="breakfastImg1" alt="American Breakfast" class="popular-img" />
+              <div class="popular-info">
+                <h4>American Breakfast</h4>
+                <p class="popular-category">Breakfast</p>
+                <p class="popular-price">P 150</p>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+              </div>
+            </div>
+
+            <div class="popular-card" @click="navigateToOrder('filipino-breakfast')">
+              <img :src="breakfastImg2" alt="Filipino Breakfast" class="popular-img" />
+              <div class="popular-info">
+                <h4>Filipino Breakfast</h4>
+                <p class="popular-category">Breakfast</p>
+                <p class="popular-price">P 120</p>
+                <div class="stars">⭐⭐⭐⭐</div>
+              </div>
+            </div>
+
+            <div class="popular-card" @click="navigateToOrder('fried-chicken')">
+              <img :src="chickenImg1" alt="Fried Chicken" class="popular-img" />
+              <div class="popular-info">
+                <h4>Fried Chicken</h4>
+                <p class="popular-category">Chicken</p>
+                <p class="popular-price">P 175</p>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+              </div>
+            </div>
+
+            <div class="popular-card" @click="navigateToOrder('grilled-chicken')">
+              <img :src="chickenImg2" alt="Grilled Chicken" class="popular-img" />
+              <div class="popular-info">
+                <h4>Grilled Chicken</h4>
+                <p class="popular-category">Chicken</p>
+                <p class="popular-price">P 180</p>
+                <div class="stars">⭐⭐⭐⭐</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- Order Now Button - Floating -->
+      <ion-button class="order-now-btn" @click="orderNow">
+        Order Now!
+      </ion-button>
     </ion-content>
   </ion-page>
 </template>
@@ -113,7 +175,7 @@ import pointsBtn from '../assets/points-btn.png';
 import profileImg from '../assets/profile.jpg';
 import logoRed from '../assets/logo-red.png';
 
-// You'll need to add these images to your assets folder
+// Category images
 import chickenImg from '../assets/chicken-category.jpg';
 import seafoodImg from '../assets/seafood-category.png';
 import dessertImg from '../assets/dessert-category.jpg';
@@ -121,6 +183,14 @@ import drinksImg from '../assets/drinks-category.jpg';
 import offerImg1 from '../assets/offer1.png';
 import offerImg2 from '../assets/offer2.png';
 
+// Menu item images (same as MenuPage)
+import breakfastImg1 from '../assets/breakfast1.png';
+import breakfastImg2 from '../assets/breakfast2.png';
+import chickenImg1 from '../assets/chicken1.png';
+import chickenImg2 from '../assets/chicken2.png';
+
+// New image asset
+import newImg from '../assets/new.png';
 
 const router = useRouter();
 
@@ -158,12 +228,12 @@ const categories = ref([
   {
     id: 3,
     name: 'Drinks',
-    image: drinksImg // Will be replaced with actual drinks image
+    image: drinksImg
   },
   {
     id: 4,
     name: 'Dessert',
-    image: dessertImg // Will be replaced with actual dessert image
+    image: dessertImg
   }
 ]);
 
@@ -184,7 +254,11 @@ const goToCategory = (categoryId) => {
 };
 
 const orderNow = () => {
-  router.push('/order');
+  router.push('/menu');
+};
+
+const navigateToOrder = (itemId) => {
+  router.push(`/order/${itemId}`);
 };
 </script>
 
@@ -250,15 +324,27 @@ ion-content {
   --padding-bottom: 20px;
 }
 
+/* Fixed Header */
+.fixed-header {
+  position: sticky;
+  top: 0;
+  background: #f8f9fa;
+  z-index: 5;
+  padding: 16px;
+}
+
+/* Scrollable Content */
+.scrollable-content {
+  padding: 0 16px 100px 16px;
+  overflow-y: auto;
+}
+
 /* Greeting Section */
 .greeting-section {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  margin-top: 30px;
   margin-bottom: 24px;
-  padding: 0 8px;
-  margin-left: 10px;
 }
 
 .logo-img {
@@ -287,26 +373,39 @@ ion-content {
   line-height: 1.3;
 }
 
-/* Search Section */
-
+/* Updated Search Section */
 .search-section {
   margin-bottom: 24px;
-  padding: 0 4px;
+  padding: 0;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 350px;
 }
 
 .custom-searchbar {
-  --background: #f1f3f4;
-  --border-radius: 12px;
-  --box-shadow: none;
+  --background: #ffffff;
+  --border-radius: 25px;
   --placeholder-color: #999;
-  --placeholder-font-style: italic;
-  --color: #333;
+  --placeholder-font-style: normal;
   --icon-color: #e53e3e;
-  height: 30px;
+  --color: #333;
+  height: 50px;
+  border-radius: 25px;
   border: 1px solid #e0e0e0;
-  border-radius: 22px;
-  width: 380px;
-  left: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin: 0;
+  display: block;
+}
+
+.custom-searchbar::part(native) {
+  border-radius: 25px;
 }
 
 .custom-searchbar::part(icon) {
@@ -316,8 +415,6 @@ ion-content {
 /* Special Offers Section */
 .special-offers-section {
   margin-bottom: 24px;
-  padding: 0 4px;
-  margin-left: 5px;
 }
 
 .section-header {
@@ -344,15 +441,13 @@ ion-content {
   width: 8px;
   height: 8px;
   margin-left: 8px;
-  
 }
 
 .offers-slider {
   display: flex;
   gap: 12px;
   overflow-x: auto;
-  padding: 0 4px 8px 4px;
-  margin: 0 -4px;
+  padding: 0 0 8px 0;
   scroll-snap-type: x mandatory;
 }
 
@@ -376,51 +471,12 @@ ion-content {
   color: white;
 }
 
-.offer-content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-}
-
-.offer-badge {
-  background: rgba(255, 255, 255, 0.2);
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 10px;
-  font-weight: bold;
-  margin-bottom: 4px;
-  display: inline-block;
-}
-
-.offer-title {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0 0 2px 0;
-}
-
-.offer-subtitle {
-  font-size: 12px;
-  margin: 0 0 8px 0;
-  opacity: 0.9;
-}
-
-.offer-price {
-  font-size: 18px;
-  font-weight: bold;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 4px 8px;
-  border-radius: 6px;
-  display: inline-block;
-}
-
 /* Category Section */
 .category-section {
-  margin-bottom: 24px;
-  padding: 0 4px;
-  margin-left: 5px;
+  margin-bottom: 32px;
 }
 
-.category-title {
+.category-title, .section-title {
   font-size: 18px;
   font-weight: bold;
   color: #000;
@@ -433,7 +489,6 @@ ion-content {
   overflow-x: auto;
   padding-bottom: 8px;
   scroll-snap-type: x mandatory;
-  margin-bottom: 80px; /* Add space for floating button */
 }
 
 .category-grid::-webkit-scrollbar {
@@ -476,6 +531,91 @@ ion-content {
   font-weight: bold;
 }
 
+/* What's New Section - Updated for new.png */
+.whats-new-section {
+  margin-bottom: 32px;
+}
+
+.new-item-card {
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.new-item-card:hover {
+  transform: translateY(-2px);
+}
+
+.new-main-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Most Popular Section */
+.most-popular-section {
+  margin-bottom: 32px;
+}
+
+.popular-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.popular-card {
+  background: #e6e6e6;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #d8d8d8;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.popular-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.popular-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.popular-info h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 4px 0;
+  color: #000;
+}
+
+.popular-category {
+  margin: 2px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.popular-price {
+  font-weight: bold;
+  color: #d32f2f;
+  font-size: 16px;
+  margin: 4px 0;
+}
+
+.stars {
+  font-size: 14px;
+  color: #f5a623;
+}
 
 /* Order Now Button - Floating */
 .order-now-btn {
@@ -486,11 +626,11 @@ ion-content {
   height: 50px;
   width: 140px;
   font-weight: bold;
-  position: absolute;
-  bottom: 190px;
+  position: fixed;
+  bottom: 150px;
   right: 20px;
   z-index: 1000 !important;
-  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.3);
+  box-shadow: transparent;
   margin: 0;
 }
 
@@ -498,9 +638,5 @@ ion-content {
 .main-content {
   background: #f8f9fa !important;
   min-height: 100vh;
-}
-
-.ion-padding {
-  padding: 16px !important;
 }
 </style>

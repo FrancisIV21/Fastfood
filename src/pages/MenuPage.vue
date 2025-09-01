@@ -17,9 +17,13 @@
     </ion-header>
 
     <ion-content class="ion-padding">
-      <!-- Search Bar -->
-      <div class="search-bar">
-        <ion-searchbar placeholder="try our new Beef Bibimbowl"></ion-searchbar>
+      <!-- Search Bar - Updated -->
+      <div class="search-container">
+        <ion-searchbar 
+          placeholder="try our new Beef Bibimbowl"
+          show-clear-button="focus"
+          class="custom-searchbar"
+        ></ion-searchbar>
         <img src="@/assets/red-filter-icon.png" alt="filter" class="filter-icon" />
       </div>
 
@@ -213,31 +217,50 @@ const navigateToOrder = (itemId: string) => {
   height: 28px;
   margin-right: 4px;
 }
-.search-bar {
+
+/* Updated Search Bar Styles */
+.search-container {
   position: relative;
   display: flex;
   align-items: center;
-  margin-top: 11px;
-  margin-bottom: 14px;
-  height: 60px;
+  margin: 11px auto 14px auto;
+  width: 90%;
+  max-width: 350px;
+}
+
+.custom-searchbar {
+  --background: #ffffff;
+  --border-radius: 25px;
+  --placeholder-color: #999;
+  --placeholder-font-style: normal;
+  --icon-color: #e53e3e;
+  --color: #333;
+  height: 50px;
+  border-radius: 25px;
   border: 1px solid #e0e0e0;
-  border-radius: 22px;
-  width: 380px;
-  margin-left: 25px;
-}
-.search-bar ion-searchbar {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   flex: 1;
+  margin: 0;
   --padding-end: 50px;
-  margin-right: 25px;
 }
+
+.custom-searchbar::part(native) {
+  border-radius: 25px;
+}
+
+.custom-searchbar::part(icon) {
+  color: #e53e3e !important;
+}
+
 .filter-icon {
   position: absolute;
-  right: 3px;
+  right: 12px;
   width: 22px;
   height: 22px;
   cursor: pointer;
-  margin-right: 9px;
+  z-index: 10;
 }
+
 .categories-scroll {
   display: flex;
   gap: 12px;

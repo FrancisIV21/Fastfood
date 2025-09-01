@@ -8,7 +8,6 @@ const HomePage = () => import('@/pages/HomePage.vue');
 const MenuPage = () => import('@/pages/MenuPage.vue');
 const OrderPage = () => import('@/pages/OrderPage.vue');
 const OrderSummary = () => import('@/pages/OrderSummary.vue'); // Add this line
-const CartPage = () => import('@/pages/CartPage.vue');
 const OrderReceivedPage = () => import('@/pages/OrderReceivedPage.vue');
 const LoyaltyPointsPage = () => import('@/pages/LoyaltyPointsPage.vue');
 const OrderTrackerPage = () => import('@/pages/OrderTrackerPage.vue');
@@ -28,7 +27,6 @@ const routes = [
   { path: '/menu', name: 'Menu', component: MenuPage },
   { path: '/order/:id', name: 'Order', component: OrderPage, props: true },
   { path: '/order-summary', name: 'OrderSummary', component: OrderSummary }, // Add this line
-  { path: '/cart', name: 'Cart', component: CartPage },
   { path: '/order-received', name: 'OrderReceived', component: OrderReceivedPage },
   { path: '/points', name: 'LoyaltyPoints', component: LoyaltyPointsPage },
   { path: '/order-tracker', name: 'OrderTracker', component: OrderTrackerPage },

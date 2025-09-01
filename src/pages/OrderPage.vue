@@ -600,7 +600,7 @@ onMounted(() => {
 }
 
 .addons-section {
-  text-align: center;
+  text-align:left;
   padding: 16px 0;
 }
 
